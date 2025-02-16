@@ -3,16 +3,49 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>WebApp con Supabase</title>
-    <script defer src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
-    <script defer src="script.js"></script>
+    <title>Gestione Sezioni</title>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h1>Lista Sezioni</h1>
-    <ul id="lista-sezioni"></ul>
 
-    <input type="text" id="nome-sezione" placeholder="Nuova sezione">
-    <button onclick="aggiungiSezione()">Aggiungi</button>
+    <div class="container">
+        <!-- Form di inserimento -->
+        <div class="form">
+            <h2>Aggiungi Sezione</h2>
+            <input type="text" id="nome" placeholder="Nome sezione">
+            <input type="text" id="email" placeholder="Email">
+            <button onclick="aggiungiSezione()">Aggiungi</button>
+        </div>
+
+        <!-- Lista delle sezioni -->
+        <div class="lista">
+            <h2>Sezioni</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Nome</th>
+                        <th>Email</th>
+                        <th>Azioni</th>
+                    </tr>
+                </thead>
+                <tbody id="sezioni-list"></tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Modale per i dettagli -->
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="chiudiModal()">&times;</span>
+            <h2>Dettagli Sezione</h2>
+            <p><strong>ID:</strong> <span id="modal-id"></span></p>
+            <p><strong>Nome:</strong> <span id="modal-nome"></span></p>
+            <p><strong>Email:</strong> <span id="modal-email"></span></p>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
 </body>
 </html>
