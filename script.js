@@ -1,4 +1,3 @@
-// Assicurati che il codice venga eseguito solo dopo che il DOM è completamente caricato
 document.addEventListener("DOMContentLoaded", async function () {
     // Inizializzazione di Supabase
     const supabaseUrl = "https://owrguuznmjhtkoqqlcen.supabase.co";
@@ -92,4 +91,7 @@ document.addEventListener("DOMContentLoaded", async function () {
 
     // Carica le sezioni all'avvio della pagina
     caricaSezioni();
+
+    // Aggiungi l'evento per il pulsante "Aggiungi"
+    document.getElementById("btn-aggiungi").addEventListener("click", aggiungiSezione);
 });
