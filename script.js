@@ -1,35 +1,91 @@
-const SUPABASE_URL = "https://owrguuznmjhtkoqqlcen.supabase.co";
-const SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im93cmd1dXpubWpodGtvcXFsY2VuIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Mzk1NDMwMjQsImV4cCI6MjA1NTExOTAyNH0._P2X1F6jiZSDCTXN6hwhtdetEonk7W7xVCnJ64l9pIA";
-const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+const supabaseUrl = "https://owrguuznmjhtkoqqlcen.supabase.co";
+const supabaseKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
+const supabase = supabase.createClient(supabaseUrl, supabaseKey);
 
-async function caricaSezioni() {
-    let { data, error } = await supabase.from("sezioni").select("*");
-    if (error) {
-        console.error("Errore nel recupero sezioni", error);
+// Aggiunge una nuova sezione
+async function aggiungiSezione() {
+    const nome = document.getElementById("nome").value.trim();
+    const email = document.getElementById("email").value.trim();
+
+    if (!nome || !email) {
+        alert("Inserisci tutti i campi!");
         return;
     }
 
-    const lista = document.getElementById("lista-sezioni");
+    let { error } = await supabase
+        .from("sezioni")
+        .insert([{ Nome: nome, Email: email }]);
+
+    if (error) {
+        console.error("Errore nell'aggiunta", error);
+        alert("Errore nell'inserimento!");
+    } else {
+        document.getElementById("nome").value = "";
+        document.getElementById("email").value = "";
+        caricaSezioni();
+    }
+}
+
+// Carica la lista delle sezioni
+async function caricaSezioni() {
+    let { data, error } = await supabase.from("sezioni").select("*");
+
+    if (error) {
+        console.error("Errore nel caricamento delle sezioni:", error);
+        return;
+    }
+
+    console.log("Dati ricevuti da Supabase:", data); // Debug
+
+    const lista = document.getElementById("sezioni-list");
     lista.innerHTML = "";
+
+    if (!data || data.length === 0) {
+        lista.innerHTML = "<tr><td colspan='4'>Nessuna sezione trovata</td></tr>";
+        return;
+    }
+
     data.forEach(sezione => {
-        let li = document.createElement("li");
-        li.textContent = sezione.nome;
-        lista.appendChild(li);
+        const row = document.createElement("tr");
+        row.innerHTML = `
+            <td>${sezione.id}</td>
+            <td>${sezione.Nome}</td>
+            <td>${sezione.Email}</td>
+            <td>
+                <button class="btn-details" onclick="mostraDettagli(${sezione.id}, '${sezione.Nome}', '${sezione.Email}')">Dettagli</button>
+                <button class="btn-delete" onclick="confermaEliminazione(${sezione.id})">❌</button>
+            </td>
+        `;
+        lista.appendChild(row);
     });
 }
 
-async function aggiungiSezione() {
-    let nome = document.getElementById("nome-sezione").value;
-    if (!nome) return alert("Inserisci un nome!");
 
-    let { data, error } = await supabase.from("sezioni").insert([{ nome }]);
-    if (error) {
-        console.error("Errore nell'inserimento", error);
-        return;
-    }
-
-    document.getElementById("nome-sezione").value = "";
-    caricaSezioni();
+// Mostra i dettagli in una modale
+function mostraDettagli(id, nome, email) {
+    document.getElementById("modal-id").innerText = id;
+    document.getElementById("modal-nome").innerText = nome;
+    document.getElementById("modal-email").innerText = email;
+    document.getElementById("modal").style.display = "block";
 }
 
+// Chiude la modale
+function chiudiModal() {
+    document.getElementById("modal").style.display = "none";
+}
+
+// Chiede conferma prima di eliminare una sezione
+async function confermaEliminazione(id) {
+    if (confirm("Sei sicuro di voler eliminare questa sezione?")) {
+        let { error } = await supabase.from("sezioni").delete().eq("id", id);
+        if (error) {
+            console.error("Errore eliminazione", error);
+            alert("Errore nell'eliminazione!");
+        } else {
+            caricaSezioni();
+        }
+    }
+}
+
+// Carica le sezioni all'avvio
 caricaSezioni();
