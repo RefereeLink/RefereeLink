@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Inizializza Supabase
   const supabaseUrl = "https://owrguuznmjhtkoqqlcen.supabase.co";
-  const supabaseKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...";
+  const supabaseKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im93cmd1dXpubWpodGtvcXFsY2VuIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Mzk1NDMwMjQsImV4cCI6MjA1NTExOTAyNH0._P2X1F6jiZSDCTXN6hwhtdetEonk7W7xVCnJ64l9pIA";
   // Usa un nome diverso per evitare confusione con la libreria
   const sbClient = window.supabase.createClient(supabaseUrl, supabaseKey);
 
