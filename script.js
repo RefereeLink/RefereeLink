@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
     try {
       const { data, error } = await sbClient
         .from("sezioni")
-        .select(*);
+        .select("Nome");
       if (error) {
         console.error("Errore:", error);
       } else {
