@@ -1,29 +1,18 @@
-document.addEventListener("DOMContentLoaded", () => {
-    showStep(1);
-});
-
-function showStep(step) {
-    document.querySelectorAll(".step").forEach(el => el.classList.remove("active"));
-    document.getElementById(`step${step}`).classList.add("active");
-}
+let currentStep = 1;
 
 function nextStep(step) {
-    showStep(step);
+    document.getElementById(`step${currentStep}`).classList.remove('active');
+    document.getElementById(`step${step}`).classList.add('active');
+    currentStep = step;
 }
 
 function prevStep(step) {
-    showStep(step);
+    document.getElementById(`step${currentStep}`).classList.remove('active');
+    document.getElementById(`step${step}`).classList.add('active');
+    currentStep = step;
 }
 
 function toggleDomicilio() {
-    let domicilioDiv = document.getElementById("domicilio_extra");
-    domicilioDiv.style.display = document.getElementById("domicilio_diverso").value === "si" ? "block" : "none";
-}
-
-function toggleCalcio() {
-    document.getElementById("calcio_extra").style.display = document.getElementById("attualmente_gioca").value === "si" ? "block" : "none";
-}
-
-function toggleAIA() {
-    document.getElementById("aia_extra").style.display = document.getElementById("ex_aia").value === "si" ? "block" : "none";
+    const domicilioFields = document.getElementById('domicilioFields');
+    domicilioFields.style.display = document.getElementById('domicilio_diverso').value === "Si" ? "block" : "none";
 }
