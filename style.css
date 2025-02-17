@@ -1,3 +1,4 @@
+/* Stile base */
 body {
     font-family: Arial, sans-serif;
     margin: 0;
@@ -9,6 +10,7 @@ body {
     height: 100vh;
 }
 
+/* Contenitore principale */
 .form-container {
     background: white;
     padding: 30px;
@@ -19,16 +21,19 @@ body {
     text-align: center;
 }
 
+/* Titoli */
 h1 {
     font-size: 24px;
     margin-bottom: 10px;
 }
 
+/* Testo */
 p {
     font-size: 16px;
     margin-bottom: 20px;
 }
 
+/* Campi input */
 input {
     width: 100%;
     padding: 10px;
@@ -38,6 +43,7 @@ input {
     font-size: 16px;
 }
 
+/* Pulsanti */
 button {
     padding: 10px 15px;
     font-size: 16px;
@@ -56,12 +62,14 @@ button {
     color: white;
 }
 
+/* Pulsanti allineati */
 .button-group {
     display: flex;
     justify-content: space-between;
     margin-top: 20px;
 }
 
+/* Nascondi gli step tranne quello attivo */
 .form-step {
     display: none;
 }
