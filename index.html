@@ -1,48 +1,37 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
-  <meta charset="UTF-8">
-  <title>Gestione Sezioni</title>
-  <!-- 1) Carico la libreria di Supabase prima di script.js -->
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestione Sezioni</title>
+    <link rel="stylesheet" href="styles.css">
+    <script defer src="script.js"></script>
 </head>
 <body>
-
-  <h1>Gestione Sezioni</h1>
-
-  <div class="form">
-    <input type="text" id="nome" placeholder="Nome sezione">
-    <input type="text" id="email" placeholder="Email">
-    <button id="btn-aggiungi">Aggiungi</button>
-  </div>
-
-  <div class="lista">
-    <h2>Sezioni</h2>
-    <table>
-      <thead>
-        <tr>
-          <th>ID</th>
-          <th>Nome</th>
-          <th>Email</th>
-          <th>Azioni</th>
-        </tr>
-      </thead>
-      <tbody id="sezioni-list"></tbody>
-    </table>
-  </div>
-
-  <!-- Modale -->
-  <div id="modal" style="display:none;">
-    <div class="modal-content">
-      <span id="close-modal" style="cursor:pointer;">&times;</span>
-      <h2>Dettagli Sezione</h2>
-      <p><strong>ID:</strong> <span id="modal-id"></span></p>
-      <p><strong>Nome:</strong> <span id="modal-nome"></span></p>
-      <p><strong>Email:</strong> <span id="modal-email"></span></p>
+    <div class="container">
+        <h1>Gestione Sezioni</h1>
+        <div class="form-container">
+            <form id="sezioneForm">
+                <input type="text" id="nome" placeholder="Nome sezione" required>
+                <input type="email" id="email" placeholder="Email" required>
+                <button type="submit">Aggiungi</button>
+            </form>
+        </div>
+        <div class="lista-container">
+            <h2>Sezioni</h2>
+            <ul id="listaSezioni"></ul>
+        </div>
     </div>
-  </div>
 
-  <!-- 2) Carico il mio script dopo la libreria Supabase -->
-  <script src="script.js"></script>
+    <!-- Modal per i dettagli -->
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Dettagli Sezione</h2>
+            <p><strong>Nome:</strong> <span id="modalNome"></span></p>
+            <p><strong>Email:</strong> <span id="modalEmail"></span></p>
+            <button id="eliminaBtn">Elimina</button>
+        </div>
+    </div>
 </body>
 </html>
