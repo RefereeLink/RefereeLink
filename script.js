@@ -1,25 +1,32 @@
 document.getElementById("dataForm").addEventListener("submit", async function(event) {
     event.preventDefault();
 
-    const nome = document.getElementById("nome").value;
-    const email = document.getElementById("email").value;
+    const nome = document.getElementById("nome").value.trim();
+    const email = document.getElementById("email").value.trim();
+    const immagine = document.getElementById("immagine").files[0];
     const statusMessage = document.getElementById("statusMessage");
 
-    if (!nome || !email) {
-        statusMessage.textContent = "Compila tutti i campi!";
+    if (!nome || !email || !immagine) {
+        statusMessage.textContent = "Compila tutti i campi e seleziona un'immagine!";
         statusMessage.style.color = "red";
         return;
     }
 
-    const WEBHOOK_URL = "https://hook.eu2.make.com/a5vjjx4danetsr5ni7u65352idtu2x53";
+    statusMessage.textContent = "Caricamento in corso...";
+    statusMessage.style.color = "black";
 
-    const payload = { nome, email };
+    const WEBHOOK_URL = "https://hook.eu2.make.com/a5vjjx4danetsr5ni7u65352idtu2x53";
+    
+    // Preparare il form data
+    const formData = new FormData();
+    formData.append("nome", nome);
+    formData.append("email", email);
+    formData.append("immagine", immagine);
 
     try {
         const response = await fetch(WEBHOOK_URL, {
             method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(payload)
+            body: formData
         });
 
         if (response.ok) {
@@ -31,8 +38,8 @@ document.getElementById("dataForm").addEventListener("submit", async function(ev
             statusMessage.style.color = "red";
         }
     } catch (error) {
-        console.error("Errore:", error);
-        statusMessage.textContent = "Si è verificato un errore.";
+        console.error("Errore di rete:", error);
+        statusMessage.textContent = "Errore di connessione.";
         statusMessage.style.color = "red";
     }
 });
