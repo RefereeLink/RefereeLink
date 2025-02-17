@@ -13,90 +13,137 @@
             <!-- STEP 1: Informazioni generali -->
             <div class="step active" id="step1">
                 <h2>Informazioni generali</h2>
-                <input type="hidden" id="corso_link" value="">
-                <input type="email" id="email" placeholder="Email" required>
-                <input type="tel" id="telefono" placeholder="Telefono" required>
-                <label>Foto profilo:</label>
-                <input type="file" id="foto_profilo" accept="image/*">
-                <input type="text" id="nome" placeholder="Nome" required>
-                <input type="text" id="cognome" placeholder="Cognome" required>
-                <select id="sesso">
-                    <option value="M">Maschio</option>
-                    <option value="F">Femmina</option>
-                </select>
-                <input type="date" id="data_nascita" required>
-                <input type="text" id="luogo_nascita" placeholder="Luogo di nascita" required>
-                <input type="text" id="provincia_nascita" placeholder="Provincia (2 lettere)" maxlength="2" required>
-                <input type="text" id="codice_fiscale" placeholder="Codice fiscale (16 caratteri)" maxlength="16" required>
-                <input type="text" id="titolo_studio" placeholder="Titolo di studio" required>
-                <input type="text" id="occupazione" placeholder="Occupazione attuale" required>
-                <input type="text" id="taglia_divisa" placeholder="Taglia divisa" required>
-                <button type="button" onclick="nextStep(2)">Continua →</button>
+
+                <div class="form-group">
+                    <label>Email:</label>
+                    <input type="email" id="email" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Telefono:</label>
+                    <input type="tel" id="telefono" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Foto profilo:</label>
+                    <input type="file" id="foto_profilo" accept="image/*">
+                </div>
+
+                <div class="form-group">
+                    <label>Nome:</label>
+                    <input type="text" id="nome" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Cognome:</label>
+                    <input type="text" id="cognome" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Sesso:</label>
+                    <select id="sesso">
+                        <option value="M">Maschio</option>
+                        <option value="F">Femmina</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>Data di nascita:</label>
+                    <input type="date" id="data_nascita" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Luogo di nascita:</label>
+                    <input type="text" id="luogo_nascita" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Provincia di nascita:</label>
+                    <input type="text" id="provincia_nascita" maxlength="2" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Codice fiscale:</label>
+                    <input type="text" id="codice_fiscale" maxlength="16" required>
+                </div>
+
+                <div class="button-group">
+                    <button type="button" onclick="nextStep(2)">Continua →</button>
+                </div>
             </div>
 
             <!-- STEP 2: Residenza & Domicilio -->
             <div class="step" id="step2">
                 <h2>Residenza & Domicilio</h2>
-                <input type="text" id="residenza_indirizzo" placeholder="Indirizzo" required>
-                <input type="text" id="residenza_civico" placeholder="Civico" required>
-                <input type="text" id="residenza_comune" placeholder="Comune" required>
-                <input type="text" id="residenza_provincia" placeholder="Provincia (2 lettere)" maxlength="2" required>
-                <input type="text" id="residenza_cap" placeholder="CAP (5 cifre)" maxlength="5" required>
 
-                <select id="domicilio_diverso" onchange="toggleDomicilio()">
-                    <option value="no">Domicilio uguale a residenza</option>
-                    <option value="si">Domicilio diverso</option>
-                </select>
-
-                <div id="domicilio_extra" style="display: none;">
-                    <input type="text" id="domicilio_indirizzo" placeholder="Indirizzo">
-                    <input type="text" id="domicilio_civico" placeholder="Civico">
-                    <input type="text" id="domicilio_comune" placeholder="Comune">
-                    <input type="text" id="domicilio_provincia" placeholder="Provincia (2 lettere)" maxlength="2">
-                    <input type="text" id="domicilio_cap" placeholder="CAP (5 cifre)" maxlength="5">
+                <div class="form-group">
+                    <label>Indirizzo:</label>
+                    <input type="text" id="residenza_indirizzo" required>
                 </div>
 
-                <button type="button" onclick="prevStep(1)">← Indietro</button>
-                <button type="button" onclick="nextStep(3)">Continua →</button>
-            </div>
-
-            <!-- STEP 3: Doppio tesseramento & Ex-associato -->
-            <div class="step" id="step3">
-                <h2>Doppio tesseramento & Ex-associato</h2>
-                <select id="attualmente_gioca" onchange="toggleCalcio()">
-                    <option value="no">Non gioco a calcio</option>
-                    <option value="si">Gioco a calcio</option>
-                </select>
-                <div id="calcio_extra" style="display: none;">
-                    <input type="text" id="squadra" placeholder="Squadra">
-                    <input type="text" id="categoria" placeholder="Categoria">
+                <div class="form-group">
+                    <label>Civico:</label>
+                    <input type="text" id="residenza_civico" required>
                 </div>
 
-                <select id="ex_aia" onchange="toggleAIA()">
-                    <option value="no">Non ho fatto parte dell'AIA</option>
-                    <option value="si">Ho fatto parte dell'AIA</option>
-                </select>
-                <div id="aia_extra" style="display: none;">
-                    <input type="text" id="stagione_dimissioni" placeholder="Stagione dimissioni">
+                <div class="form-group">
+                    <label>Comune:</label>
+                    <input type="text" id="residenza_comune" required>
                 </div>
 
-                <button type="button" onclick="prevStep(2)">← Indietro</button>
-                <button type="button" onclick="nextStep(4)">Continua →</button>
+                <div class="form-group">
+                    <label>Provincia:</label>
+                    <input type="text" id="residenza_provincia" maxlength="2" required>
+                </div>
+
+                <div class="form-group">
+                    <label>CAP:</label>
+                    <input type="text" id="residenza_cap" maxlength="5" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Domicilio diverso da residenza?</label>
+                    <select id="domicilio_diverso" onchange="toggleDomicilio()">
+                        <option value="No">No</option>
+                        <option value="Si">Si</option>
+                    </select>
+                </div>
+
+                <div id="domicilioFields" style="display: none;">
+                    <div class="form-group">
+                        <label>Indirizzo:</label>
+                        <input type="text" id="domicilio_indirizzo">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Civico:</label>
+                        <input type="text" id="domicilio_civico">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Comune:</label>
+                        <input type="text" id="domicilio_comune">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Provincia:</label>
+                        <input type="text" id="domicilio_provincia" maxlength="2">
+                    </div>
+
+                    <div class="form-group">
+                        <label>CAP:</label>
+                        <input type="text" id="domicilio_cap" maxlength="5">
+                    </div>
+                </div>
+
+                <div class="button-group">
+                    <button type="button" onclick="prevStep(1)">← Indietro</button>
+                    <button type="button" onclick="nextStep(3)">Continua →</button>
+                </div>
             </div>
 
-            <!-- STEP 4-5-6-7-8 (aggiungere i campi come sopra) -->
-
-            <!-- STEP 8: Dichiarazioni obbligatorie -->
-            <div class="step" id="step8">
-                <h2>Dichiarazioni obbligatorie</h2>
-                <label><input type="checkbox" checked> Dichiarazione 1 di 4</label>
-                <label><input type="checkbox" checked> Dichiarazione 2 di 4</label>
-                <label><input type="checkbox" checked> Dichiarazione 3 di 4</label>
-                <label><input type="checkbox" checked> Dichiarazione 4 di 4</label>
-                <button type="button" onclick="prevStep(7)">← Indietro</button>
-                <button type="submit">Invia</button>
-            </div>
-
+            <!-- STEP 3-8: Simili con stesso stile -->
+            
         </form>
     </div>
 
