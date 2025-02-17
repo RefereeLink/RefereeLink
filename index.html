@@ -3,35 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gestione Sezioni</title>
+    <title>Invio Dati a Make.com</title>
     <link rel="stylesheet" href="styles.css">
     <script defer src="script.js"></script>
 </head>
 <body>
     <div class="container">
-        <h1>Gestione Sezioni</h1>
-        <div class="form-container">
-            <form id="sezioneForm">
-                <input type="text" id="nome" placeholder="Nome sezione" required>
-                <input type="email" id="email" placeholder="Email" required>
-                <button type="submit">Aggiungi</button>
-            </form>
-        </div>
-        <div class="lista-container">
-            <h2>Sezioni</h2>
-            <ul id="listaSezioni"></ul>
-        </div>
-    </div>
-
-    <!-- Modal per i dettagli -->
-    <div id="modal" class="modal">
-        <div class="modal-content">
-            <span class="close">&times;</span>
-            <h2>Dettagli Sezione</h2>
-            <p><strong>Nome:</strong> <span id="modalNome"></span></p>
-            <p><strong>Email:</strong> <span id="modalEmail"></span></p>
-            <button id="eliminaBtn">Elimina</button>
-        </div>
+        <h1>Modulo di Invio</h1>
+        <form id="dataForm">
+            <input type="text" id="nome" placeholder="Nome" required>
+            <input type="email" id="email" placeholder="Email" required>
+            <button type="submit">Invia</button>
+        </form>
+        <p id="statusMessage"></p>
     </div>
 </body>
 </html>
