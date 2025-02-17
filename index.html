@@ -3,20 +3,78 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Invio Dati e Immagine</title>
+    <title>Modulo di Iscrizione</title>
     <link rel="stylesheet" href="styles.css">
-    <script defer src="script.js"></script>
 </head>
 <body>
-    <div class="container">
-        <h1>Modulo di Invio</h1>
-        <form id="dataForm">
-            <input type="text" id="nome" placeholder="Nome" required>
+
+<div class="container">
+    <form id="formIscrizione">
+        <!-- Step 1 -->
+        <div class="step" id="step1">
+            <h2>Informazioni generali</h2>
+            <input type="hidden" id="corso" value="">
             <input type="email" id="email" placeholder="Email" required>
-            <input type="file" id="immagine" accept="image/*" required>
-            <button type="submit">Invia</button>
-        </form>
-        <p id="statusMessage"></p>
-    </div>
+            <input type="tel" id="telefono" placeholder="Telefono" required>
+            <input type="file" id="foto_profilo" accept="image/*" required>
+            <input type="text" id="nome" placeholder="Nome" required>
+            <input type="text" id="cognome" placeholder="Cognome" required>
+            <select id="sesso">
+                <option value="M">Maschio</option>
+                <option value="F">Femmina</option>
+            </select>
+            <input type="date" id="data_nascita" required>
+            <input type="text" id="luogo_nascita" placeholder="Luogo di nascita" required>
+            <input type="text" id="provincia_nascita" placeholder="Provincia di nascita (2 lettere)" maxlength="2" required>
+            <input type="text" id="codice_fiscale" placeholder="Codice fiscale (16 caratteri)" maxlength="16" required>
+            <input type="text" id="titolo_studio" placeholder="Titolo di studio" required>
+            <input type="text" id="occupazione" placeholder="Occupazione attuale" required>
+            <input type="text" id="taglia_divisa" placeholder="Taglia divisa" required>
+            <div class="buttons">
+                <button type="button" onclick="nextStep(2)">Continua →</button>
+            </div>
+        </div>
+
+        <!-- Step 2 -->
+        <div class="step" id="step2">
+            <h2>Residenza & Domicilio</h2>
+            <input type="text" id="residenza_indirizzo" placeholder="Indirizzo" required>
+            <input type="text" id="residenza_civico" placeholder="Civico" required>
+            <input type="text" id="residenza_comune" placeholder="Comune" required>
+            <input type="text" id="residenza_provincia" placeholder="Provincia (2 lettere)" maxlength="2" required>
+            <input type="text" id="residenza_cap" placeholder="CAP (5 cifre)" maxlength="5" required>
+            <select id="domicilio_diverso" onchange="toggleDomicilio()">
+                <option value="no">Domicilio uguale a residenza</option>
+                <option value="si">Domicilio diverso</option>
+            </select>
+            <div id="domicilio_extra" style="display: none;">
+                <input type="text" id="domicilio_indirizzo" placeholder="Indirizzo">
+                <input type="text" id="domicilio_civico" placeholder="Civico">
+                <input type="text" id="domicilio_comune" placeholder="Comune">
+                <input type="text" id="domicilio_provincia" placeholder="Provincia (2 lettere)" maxlength="2">
+                <input type="text" id="domicilio_cap" placeholder="CAP (5 cifre)" maxlength="5">
+            </div>
+            <div class="buttons">
+                <button type="button" onclick="prevStep(1)">← Indietro</button>
+                <button type="button" onclick="nextStep(3)">Continua →</button>
+            </div>
+        </div>
+
+        <!-- Step 8 (Ultimo step) -->
+        <div class="step" id="step8">
+            <h2>Dichiarazioni obbligatorie</h2>
+            <label><input type="checkbox" checked> Dichiarazione 1</label>
+            <label><input type="checkbox" checked> Dichiarazione 2</label>
+            <label><input type="checkbox" checked> Dichiarazione 3</label>
+            <label><input type="checkbox" checked> Dichiarazione 4</label>
+            <div class="buttons">
+                <button type="button" onclick="prevStep(7)">← Indietro</button>
+                <button type="submit">Invia</button>
+            </div>
+        </div>
+    </form>
+</div>
+
+<script src="script.js"></script>
 </body>
 </html>
