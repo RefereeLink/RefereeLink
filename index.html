@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Invio Dati a Make.com</title>
+    <title>Invio Dati e Immagine</title>
     <link rel="stylesheet" href="styles.css">
     <script defer src="script.js"></script>
 </head>
@@ -13,6 +13,7 @@
         <form id="dataForm">
             <input type="text" id="nome" placeholder="Nome" required>
             <input type="email" id="email" placeholder="Email" required>
+            <input type="file" id="immagine" accept="image/*" required>
             <button type="submit">Invia</button>
         </form>
         <p id="statusMessage"></p>
